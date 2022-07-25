@@ -28,7 +28,7 @@ resource "aws_instance" "remote_ec2instance" {
         type = "ssh"
         host = self.public_ip
         user = "ec2-user"
-        private_key = ${{ secrets.UBUNTU}}
+        private_key = file("ubuntu.pem")
     }
 }
 }
