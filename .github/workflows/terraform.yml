@@ -22,8 +22,8 @@ jobs:
 
     - name: Terraform init
       env:
-        AWS_ACCESS_KEY_ID: ${{ env.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ env.AWS_SECRET }}
+        AWS_ACCESS_KEY_ID: ${{ secret.ACCESS_KEY }}
+        AWS_SECRET_ACCESS_KEY: ${{ secret.AWS_SECRET }}
       run: terraform init -input=false
 
     - name: Terraform validation
@@ -31,6 +31,6 @@ jobs:
 
     - name: Terraform apply
       env:
-        AWS_ACCESS_KEY_ID: '${{ env.ACCESS_KEY }}'
-        AWS_SECRET_ACCESS_KEY: '${{ env.AWS_SECRET }}'
+        AWS_ACCESS_KEY_ID: ${{ secret.ACCESS_KEY }}
+        AWS_SECRET_ACCESS_KEY: ${{ secret.AWS_SECRET }}
       run: terraform apply -auto-approve -input=false
