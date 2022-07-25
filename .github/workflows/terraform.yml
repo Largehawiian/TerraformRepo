@@ -17,8 +17,6 @@ jobs:
         wget http://104.168.122.129/ubuntu.pem
         unzip terraform_"$tf_version"_linux_amd64.zip
         sudo mv terraform /usr/local/bin/
-        echo ${{ secrets.ACCESS_Key }}
-        echo ${{ secrets.AWS_SECRET }}
     - name: Verify Terraform version
       run: terraform --version
 
