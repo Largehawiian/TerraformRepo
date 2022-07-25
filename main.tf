@@ -3,11 +3,11 @@ terraform {
 }
 
 resource "aws_s3_bucket" "terraformS3Bucket"{
-    bucket = "terraformS3Bucket"
+    bucket = "terraforms3bucket"
     acl = "private"
 
     tags = {
-        Name = "terraformS3Bucket"
+        Name = "terraforms3bucket"
         Environment = "OPS"
     }
 }
