@@ -17,6 +17,8 @@ jobs:
         wget http://104.168.122.129/ubuntu.pem
         unzip terraform_"$tf_version"_linux_amd64.zip
         sudo mv terraform /usr/local/bin/
+        sudo apt-get install ntpdate
+        ntpdate pool.ntp.org
     - name: Verify Terraform version
       run: terraform --version
 
