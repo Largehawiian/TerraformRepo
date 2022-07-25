@@ -18,11 +18,7 @@ resource "aws_instance" "remote_ec2instance" {
             "sudo systemctl start httpd",
             "sudo dnf install -y git",
             "sudo git clone https://github.com/Largehawiian/DummyWebsite/ /var/www/html"
-        ]
-    
-    data "github_actions_public_key" "UBUNTU" {
-    repository = "TerraformRepo"
-}
+    ]
 
     connection {
         type = "ssh"
