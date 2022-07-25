@@ -32,4 +32,4 @@ jobs:
       env:
         AWS_ACCESS_KEY_ID: 'AKIAXA2X3WNGTY3ABU3G'
         AWS_SECRET_ACCESS_KEY: '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'
-      run: terraform destroy -auto-approve -input=false
+      run: terraform apply -auto-approve -input=false
