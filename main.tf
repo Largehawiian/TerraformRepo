@@ -50,7 +50,6 @@ tags = {
 }
 
 
-
 resource "aws_lb_target_group_attachment" "remote_ec2instance" {
     target_group_arn = aws_lb_target_group.test.arn
     target_id        = aws_instance.remote_ec2instance.id
