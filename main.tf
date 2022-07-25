@@ -1,5 +1,6 @@
 terraform {
     required_version = ">=0.12.13"
+    
 }
 
 resource "aws_instance" "remote_ec2instance" {
@@ -27,7 +28,7 @@ resource "aws_instance" "remote_ec2instance" {
         type = "ssh"
         host = self.public_ip
         user = "ec2-user"
-        private_key = "UBUNTU"
+        private_key = ${{ secrets.UBUNTU}}
     }
 }
 }
