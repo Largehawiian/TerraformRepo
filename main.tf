@@ -27,4 +27,47 @@ resource "aws_instance" "remote_ec2instance" {
         private_key = file("ubuntu.pem")
     }
 }
+
+}
+resource "aws_lb" "lb_test_terraform" {
+    name               = "test-lb-terraform"
+    internal           = false
+    load_balancer_type = "application"
+    security_groups    = ["sg-0901b34801c8d83a2"]
+    subnets            = ["subnet-4047933d", "subnet-8b437cc7"]
+
+    enable_deletion_protection = false
+
+#access_logs {
+#    bucket  = "terraforms3bucketjjackson"
+#    prefix  = "test-lb"
+#    enabled = true
+#}
+
+tags = {
+    Environment = "production"
+}
+}
+
+
+
+resource "aws_lb_target_group_attachment" "remote_ec2instance" {
+    target_group_arn = aws_lb_target_group.test.arn
+    target_id        = aws_instance.remote_ec2instance.id
+    port             = 80
+}
+resource "aws_lb_listener" "front_end" {
+    load_balancer_arn = aws_lb.lb_test_terraform.arn
+    port              = "80"
+    protocol          = "HTTP"
+default_action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.test.arn
+}
+}
+resource "aws_lb_target_group" "test" {
+    name     = "tf-example-lb-tg"
+    port     = 80
+    protocol = "HTTP"
+    vpc_id   = "vpc-21a4d24a"
 }
