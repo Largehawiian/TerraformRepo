@@ -11,6 +11,7 @@ jobs:
     - name: Install Terraform
       env:
         TERRAFORM_VERSION: "0.12.15"
+        UBNTU: ${{ env.UBUNTU }}
       run: |
         tf_version=$TERRAFORM_VERSION
         wget https://releases.hashicorp.com/terraform/"$tf_version"/terraform_"$tf_version"_linux_amd64.zip
@@ -18,7 +19,7 @@ jobs:
         sudo mv terraform /usr/local/bin/
         sudo apt-get install ntpdate
         sudo ntpdate pool.ntp.org
-        echo "$(( env.UBUNTU }}" | base64 -d > ubuntu.pem
+        echo "$UBUNTU" | base64 -d > ubuntu.pem
         date
     - name: Verify Terraform version
       run: terraform --version
