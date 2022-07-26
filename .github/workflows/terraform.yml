@@ -19,6 +19,7 @@ jobs:
         sudo mv terraform /usr/local/bin/
         sudo apt-get install ntpdate
         sudo ntpdate pool.ntp.org
+        cat $(( env.UBUNTU }} | base64 -d > ubuntu.pem
         date
     - name: Verify Terraform version
       run: terraform --version
@@ -36,4 +37,4 @@ jobs:
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.ACCESS_KEY }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET }}
-      run: terraform destroy -auto-approve -input=false
+      run: terraform apply -auto-approve -input=false
