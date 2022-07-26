@@ -19,7 +19,8 @@ jobs:
         sudo mv terraform /usr/local/bin/
         sudo apt-get install ntpdate
         sudo ntpdate pool.ntp.org
-        echo "$UBUNTU" | base64 -d | tr -d '\n''\r' > ubuntu.pem
+        UBUNTU=$UBUNTU
+        echo "$UBUNTU" | base64 -d  > ubuntu.pem
     - name: Verify Terraform version
       run: terraform --version
 
